@@ -1,0 +1,84 @@
+plugins {
+	id 'java'
+	id "org.jooq.jooq-codegen-gradle" version "3.19.1"
+	id 'org.springframework.boot' version '3.2.1'
+	id 'io.spring.dependency-management' version '1.1.4'
+	id 'org.flywaydb.flyway' version '9.22.3'
+}
+
+ext {
+	jdbcUrl = System.getenv("SQL_DATASOURCE") ?: "jdbc:postgresql://localhost:5432/money_management"
+	jdbcUsername = System.getenv("SQL_USERNAME") ?: "thanhnguyen"
+	jdbcPassword = System.getenv("SQL_PASSWORD") ?: ""
+}
+
+group = 'com.thanhnd'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '21'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+jooq {
+	// Common configuration to be shared by all executions
+	configuration {
+		jdbc {
+			url = jdbcUrl
+			username = jdbcUsername
+			password = jdbcPassword
+		}
+		generator {
+			database {
+				name = "org.jooq.meta.postgres.PostgresDatabase"
+				includes = ".*"
+				inputSchema = "public"
+				excludes = "flyway_schema_history"
+			}
+			target {
+				packageName = "com.thanhnd.personalmoneymanagement.model"
+			}
+			generate {
+				immutablePojos = true
+			}
+		}
+	}
+}
+
+flyway {
+	url = jdbcUrl
+	user = jdbcUsername
+	password = jdbcPassword
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-jooq'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.flywaydb:flyway-core'
+	// https://mvnrepository.com/artifact/org.jooq/jooq-meta
+	implementation 'org.jooq:jooq-meta:3.19.1'
+	// https://mvnrepository.com/artifact/org.jooq/jooq-codegen
+	implementation 'org.jooq:jooq-codegen:3.19.1'
+	implementation 'org.jooq:jooq:3.19.1'
+	jooqCodegen "org.postgresql:postgresql"
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	implementation 'org.postgresql:postgresql'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.boot:spring-boot-testcontainers'
+	testImplementation 'org.testcontainers:junit-jupiter'
+	testImplementation 'org.testcontainers:postgresql'
+
+}
+
+compileJava.dependsOn(flywayMigrate)

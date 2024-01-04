@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    url: ${SQL_DATASOURCE:jdbc:postgresql://localhost:5432/money_management}
+    username: ${SQL_USERNAME:}
+    password: ${SQL_PASSWORD:}
+  flyway:
+    enabled: false
