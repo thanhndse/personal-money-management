@@ -23,6 +23,9 @@ env:
   # file, e.g. .aws/task-definition.json
   CONTAINER_NAME: pmm           # set this to the name of the container in the
   # containerDefinitions section of your task definition
+  SQL_DATASOURCE: jdbc:postgresql://money-management.cv8aeciecp72.ap-southeast-2.rds.amazonaws.com:5432/money-management
+  SQL_USERNAME: ${{ secrets.SQL_USERNAME_DEV }}
+  SQL_PASSWORD: ${{ secrets.SQL_PASSWORD_DEV }}
 
 jobs:
   deploy:
