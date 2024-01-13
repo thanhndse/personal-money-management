@@ -1,9 +1,9 @@
 {
-  "taskDefinitionArn": "arn:aws:ecs:ap-southeast-2:627941398953:task-definition/PMM:5",
+  "taskDefinitionArn": "arn:aws:ecs:ap-southeast-2:627941398953:task-definition/PMM:6",
   "containerDefinitions": [
     {
       "name": "pmm",
-      "image": "public.ecr.aws/x8s5u4g3/pmm-ecr:latest",
+      "image": "627941398953.dkr.ecr.ap-southeast-2.amazonaws.com/pmm-ecr:latest",
       "cpu": 0,
       "portMappings": [
         {
@@ -51,7 +51,7 @@
   "taskRoleArn": "arn:aws:iam::627941398953:role/ecsTaskExecutionRole",
   "executionRoleArn": "arn:aws:iam::627941398953:role/ecsTaskExecutionRole",
   "networkMode": "awsvpc",
-  "revision": 5,
+  "revision": 6,
   "volumes": [],
   "status": "ACTIVE",
   "requiresAttributes": [
@@ -62,6 +62,9 @@
       "name": "ecs.capability.execution-role-awslogs"
     },
     {
+      "name": "com.amazonaws.ecs.capability.ecr-auth"
+    },
+    {
       "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
     },
     {
@@ -69,6 +72,9 @@
     },
     {
       "name": "com.amazonaws.ecs.capability.task-iam-role"
+    },
+    {
+      "name": "ecs.capability.execution-role-ecr-pull"
     },
     {
       "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
@@ -94,7 +100,7 @@
     "cpuArchitecture": "X86_64",
     "operatingSystemFamily": "LINUX"
   },
-  "registeredAt": "2024-01-13T15:47:40.609Z",
+  "registeredAt": "2024-01-13T17:27:24.927Z",
   "registeredBy": "arn:aws:iam::627941398953:user/thanhnguyen",
   "tags": []
 }
