@@ -17,7 +17,7 @@ on:
 env:
   AWS_REGION: ap-southeast-2
   ECR_REPOSITORY: pmm-ecr
-  ECS_SERVICE: pmm-service-dev-v1
+  ECS_SERVICE: pmm-dev-service-v1
   ECS_CLUSTER: PMM-dev
   ECS_TASK_DEFINITION: .github/workflows/task-definition.json # set this to the path to your Amazon ECS task definition
   # file, e.g. .aws/task-definition.json
