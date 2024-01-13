@@ -2,7 +2,6 @@
   "containerDefinitions": [
     {
       "name": "pmm",
-      "image": "627941398953.dkr.ecr.ap-southeast-2.amazonaws.com/pmm-ecr:latest",
       "cpu": 0,
       "portMappings": [
         {
@@ -100,6 +99,5 @@
     "operatingSystemFamily": "LINUX"
   },
   "registeredAt": "2024-01-13T17:27:24.927Z",
-  "registeredBy": "arn:aws:iam::627941398953:user/thanhnguyen",
   "tags": []
 }
