@@ -1,0 +1,100 @@
+{
+  "taskDefinitionArn": "arn:aws:ecs:ap-southeast-2:627941398953:task-definition/PMM:5",
+  "containerDefinitions": [
+    {
+      "name": "pmm",
+      "image": "public.ecr.aws/x8s5u4g3/pmm-ecr:latest",
+      "cpu": 0,
+      "portMappings": [
+        {
+          "name": "8080",
+          "containerPort": 8080,
+          "hostPort": 8080,
+          "protocol": "tcp",
+          "appProtocol": "http"
+        }
+      ],
+      "essential": true,
+      "environment": [
+        {
+          "name": "SQL_DATASOURCE",
+          "value": "jdbc:postgresql://money-management.cv8aeciecp72.ap-southeast-2.rds.amazonaws.com:5432/money-management"
+        }
+      ],
+      "environmentFiles": [],
+      "mountPoints": [],
+      "volumesFrom": [],
+      "secrets": [
+        {
+          "name": "SQL_PASSWORD",
+          "valueFrom": "arn:aws:secretsmanager:ap-southeast-2:627941398953:secret:pmm/dev-zdzgMK:SQL_PASSWORD::"
+        },
+        {
+          "name": "SQL_USERNAME",
+          "valueFrom": "arn:aws:secretsmanager:ap-southeast-2:627941398953:secret:pmm/dev-zdzgMK:SQL_USERNAME::"
+        }
+      ],
+      "ulimits": [],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-create-group": "true",
+          "awslogs-group": "/ecs/PMM",
+          "awslogs-region": "ap-southeast-2",
+          "awslogs-stream-prefix": "ecs"
+        },
+        "secretOptions": []
+      }
+    }
+  ],
+  "family": "PMM",
+  "taskRoleArn": "arn:aws:iam::627941398953:role/ecsTaskExecutionRole",
+  "executionRoleArn": "arn:aws:iam::627941398953:role/ecsTaskExecutionRole",
+  "networkMode": "awsvpc",
+  "revision": 5,
+  "volumes": [],
+  "status": "ACTIVE",
+  "requiresAttributes": [
+    {
+      "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+    },
+    {
+      "name": "ecs.capability.execution-role-awslogs"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+    },
+    {
+      "name": "ecs.capability.secrets.asm.environment-variables"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.task-iam-role"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+    },
+    {
+      "name": "ecs.capability.task-eni"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+    }
+  ],
+  "placementConstraints": [],
+  "compatibilities": [
+    "EC2",
+    "FARGATE"
+  ],
+  "requiresCompatibilities": [
+    "EC2"
+  ],
+  "cpu": "256",
+  "memory": "512",
+  "runtimePlatform": {
+    "cpuArchitecture": "X86_64",
+    "operatingSystemFamily": "LINUX"
+  },
+  "registeredAt": "2024-01-13T15:47:40.609Z",
+  "registeredBy": "arn:aws:iam::627941398953:user/thanhnguyen",
+  "tags": []
+}
