@@ -49,9 +49,7 @@
   "taskRoleArn": "arn:aws:iam::627941398953:role/ecsTaskExecutionRole",
   "executionRoleArn": "arn:aws:iam::627941398953:role/ecsTaskExecutionRole",
   "networkMode": "awsvpc",
-  "revision": 6,
   "volumes": [],
-  "status": "ACTIVE",
   "requiresAttributes": [
     {
       "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
@@ -93,11 +91,10 @@
     "EC2"
   ],
   "cpu": "256",
-  "memory": "256",
+  "memory": "512",
   "runtimePlatform": {
     "cpuArchitecture": "X86_64",
     "operatingSystemFamily": "LINUX"
   },
-  "registeredAt": "2024-01-13T17:27:24.927Z",
   "tags": []
 }
